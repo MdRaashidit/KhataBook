@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KhataBook</title>
+    <link rel="icon" href="{% static '/images/raashid.png' %}" type="image/png" alt="My image">
+    <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
+</head>
+<body>
+<a align="right" href="{% url 'history' %}">View History</a>&nbsp&nbsp&nbsp
+
+<div class="loginbox">
+    <form method="POST">
+    <input type="date" name="formdate" placeholder="date" required></br></br>
+        {% csrf_token %}
+        <input type="text" name="formparty"  list="all_party" placeholder="Person" required>
+    <datalist id="all_party">
+        {% for p in all_party %}
+        <option value="{{p.id}}"> {{p.dbname}}</option>
+        {% endfor %}
+    </datalist>
+    </br></br>
+    
+        <input type="number" name="formamount" placeholder="Amount" required></br></br>
+        <input type="text" name="description" placeholder="Description" required></br></br>
+        
+        <select name="mytrans" id="mytrans">
+        <option value="Debit">Debit</option>
+        <option value="Credit">Credit</option>
+
+        </select>
+        </br></br>
+       <button type="submit">Save</button>
+       </form>
+  </div> 
+   
+</body>
+</html>

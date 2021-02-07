@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KhataBook</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}">
+</head>
+<body>
+<a href="{% url 'logout' %}">Logout</a>
+<table>
+  <tr>
+    <th>DATE</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Amount</th>
+    <th>Total Balance</th>
+    <th>Transaction</th>
+
+    
+    
+  </tr>
+  {% for p  in all_transaction %}
+  <tr>
+    <td>{{p.dbdate}}</td>
+    <td>{{p.dbparty}}</td>
+    <td>{{p.description}}</td>
+    <td>{{p.credit_debit}}</td>
+
+    {% if p.dbamount <= 100 %}
+    <td style="color:red; font-weight:700;">{{p.dbamount}} </td>
+    {% endif %}
+   {% if p.dbamount > 100 %}
+    <td style="color:darkred; font-weight:bolder; ">{{p.dbamount}} </td>
+    {% endif %}
+    
+    <td>{{p.trace}}</td>
+
+    
+    
+  </tr>
+  {% endfor %}
+
+
+
+</body>
+</html>

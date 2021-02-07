@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% csrf_token %}
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="formparty"  list="all_party" placeholder="party" required>
+    <datalist id="all_party">
+        {% for p in all_party %}
+        <option value="{{p.id}}"> {{p.dbname}}</option>
+        {% endfor %}
+    </datalist>
+    </br></br>
+        <input type="number" name="formamount" placeholder="amount" required></br></br>
+        <input type="text" name="description" placeholder="description" required></br></br>
+        <input type="date" name="formdate" placeholder="date" required></br></br>
+       <button type="submit">Save</button>
+       </form>
+   
+</body>
+</html>
